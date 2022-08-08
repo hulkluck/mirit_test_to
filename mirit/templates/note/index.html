@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Последние заметки{% endblock %}
+{% block content %}
+
+  <div class="container py-5">
+
+  {% for post in page_obj %}
+      <ul>
+      <li>
+        Автор: {{ post.author.fio }}<br>
+        <a href="{% url 'notes:profile' post.author.username %}">все посты пользователя</a>
+      </li>
+        <li>
+          Дата публикации: {{ post.pub_date|date:"d E Y" }}
+        </li>
+      </ul>
+      <p>{{ post.text }}</p>
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+
+  {% include 'note/includes/paginator.html' %}
+  </div>
+{% endblock %}    

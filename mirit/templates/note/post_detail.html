@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Пост {{ post.text|truncatechars:30 }}{% endblock %}
+{% block content %}
+
+  
+      <div class="row">
+        <aside class="col-12 col-md-3">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Дата публикации: {{ post.pub_date|date:"d E Y" }}  
+            </li>
+              <li class="list-group-item">
+                Автор: {{ post.author.fio }}</a> 
+              </li>
+              
+              <li class="list-group-item">
+              Всего постов автора:  <span>{{ sum_count }}</span>
+              </ul>
+        </aside>
+        <article class="col-12 col-md-8">
+          <p>
+           {{ post.text}}
+          </p>
+          {% if user == post.author %}
+          <p>
+          <a href="{% url 'notes:note_edit' post.pk %}">
+            Редактировать запись
+            </a>
+          </p>
+          {% endif %}
+          
+          </article>
+      </div> 
+  
+  {% include 'note/includes/paginator.html' %}
+{% endblock %}
