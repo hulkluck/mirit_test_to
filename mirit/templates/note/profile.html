@@ -3,17 +3,15 @@
 {{ author.fio }}
 {% endblock %}
 {% block content %}
-{% for post in page_obj %}
+
+{% for post in object_list %}
 {% if forloop.first %}
 
     <div class="container py-5">        
-        <h1>Все заметки пользователя {{ post.author.fio }} </h1>
-        <h3>Всего заметок: {{ sum_count }}</h3>
+        <h1>Все посты пользователя {{ post.author.fio }} </h1>
+        <h3>Всего постов: {{ object_list|length }}</h3>
         <article>
           <ul>
-            <li>
-              Автор: {{ post.author.fio }}
-            </li>
             <li>
               Дата публикации: {{ post.pub_date|date:"d E Y" }} 
             </li>
@@ -22,10 +20,23 @@
           {{ post.text }}
           </p>
           <a href="{% url 'notes:note_detail' post.pk %}">подробная информация </a>
-        </article> 
-{% endif %}
+        </article>       
+                
+        {% else %}
+        <ul>
+          <li>
+            Дата публикации: {{ post.pub_date|date:"d E Y" }} 
+          </li>
+        </ul>
+        <p>
+        {{ post.text }}
+        </p>
+        <a href="{% url 'notes:note_detail' post.pk %}">подробная информация </a>
+
+        {% endif %}
         {% if not forloop.last %}<hr>{% endif %}
         {% endfor %}
         {% include 'note/includes/paginator.html' %} 
-      </div>    
+      </div>
+       
 {% endblock %} 

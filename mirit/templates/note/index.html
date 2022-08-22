@@ -4,11 +4,11 @@
 
   <div class="container py-5">
 
-  {% for post in page_obj %}
+  {% for post in object_list %}
       <ul>
       <li>
         Автор: {{ post.author.fio }}<br>
-        <a href="{% url 'notes:profile' post.author.username %}">все посты пользователя</a>
+        <a href="{% url 'notes:profile' post.author.pk %}">все посты пользователя</a>
       </li>
         <li>
           Дата публикации: {{ post.pub_date|date:"d E Y" }}

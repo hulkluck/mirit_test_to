@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 
 
 ADMIN = 'admin'
@@ -73,6 +74,9 @@ class Note(models.Model):
         ordering = ('-pub_date',)
         verbose_name = 'Заметка'
         verbose_name_plural = 'Заметки'
+
+    def get_absolute_url(self):
+        return reverse('notes:note_detail', args=[self.id])
 
     def __str__(self):
         return self.text[:15]

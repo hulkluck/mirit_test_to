@@ -7,23 +7,20 @@
         <aside class="col-12 col-md-3">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              Дата публикации: {{ post.pub_date|date:"d E Y" }}  
+              Дата публикации: {{ object.pub_date|date:"d E Y" }}  
             </li>
               <li class="list-group-item">
-                Автор: {{ post.author.fio }}</a> 
+                Автор: {{ object.author.fio }}</a> 
               </li>
-              
-              <li class="list-group-item">
-              Всего постов автора:  <span>{{ sum_count }}</span>
               </ul>
         </aside>
         <article class="col-12 col-md-8">
           <p>
-           {{ post.text}}
+           {{ object.text}}
           </p>
-          {% if user == post.author %}
+          {% if user == object.author %}
           <p>
-          <a href="{% url 'notes:note_edit' post.pk %}">
+          <a href="{% url 'notes:note_edit' object.pk %}">
             Редактировать запись
             </a>
           </p>

@@ -1,13 +1,13 @@
 from django.urls import path
 
-from . import views
+from .views import *
 
 app_name = 'notes'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('profile/<str:username>/', views.profile, name='profile'),
-    path('note/<int:note_id>/', views.note_detail, name='note_detail'),
-    path('create/', views.note_create, name='note_create'),
-    path('note/<note_id>/edit/', views.note_edit, name='note_edit'),
+    path('', PostListView.as_view(), name='index'),
+    path('profile/<int:pk>/', ProfileDetailView.as_view(), name='profile'),
+    path('note/<int:pk>/', PostDetailView.as_view(), name='note_detail'),
+    path('create/', PostCreateView.as_view(), name='note_create'),
+    path('note/<int:pk>/edit/', PostUpdateView.as_view(), name='note_edit'),
 ]
