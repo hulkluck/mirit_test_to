@@ -10,4 +10,5 @@ urlpatterns = [
     path('note/<int:pk>/', PostDetailView.as_view(), name='note_detail'),
     path('create/', PostCreateView.as_view(), name='note_create'),
     path('note/<int:pk>/edit/', PostUpdateView.as_view(), name='note_edit'),
+    path('note/stat', PostStatView.as_view(), name='note_stat'),
 ]

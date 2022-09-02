@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Последние заметки{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <form method="get" action="{% url 'notes:note_stat' %}">
+        <p>ОТ: <input type="datetime-local" value={{start}} name="start" required></p>
+        <p>ДО: <input type="datetime-local" value={{end}} name="end" required></p>
+        <p><input type="submit" name="submit" value="submit"/></p>
+    </form>
+</div>
+<div class="container py-5">
+    Общее воличество постов: {{ count|length }}
+</div>
+  <div class="container py-5">
+  
+  {% for post in object_list %}
+      <ul>
+      <li>
+        Автор: {{ post.author.fio }}<br>
+        <a href="{% url 'notes:profile' post.author.pk %}">все посты пользователя</a>
+      </li>
+        <li>
+          Дата публикации: {{ post.pub_date|date:"d E Y" }}
+        </li>
+      </ul>
+      <p>{{ post.text }}</p>
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+
+  {% include 'note/includes/paginator.html' %}
+  </div>
+
+{% endblock %}    

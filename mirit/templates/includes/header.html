@@ -7,6 +7,15 @@
         </a>
     {% with request.resolver_match.view_name as view_name %}
      <ul class="nav nav-pills">
+        <li class="nav-item"> 
+          <a class="nav-link
+          {% if view_name  == '' %}
+            active
+          {% endif %}"
+          href="{% url 'notes:note_stat' %}">
+          сортировка
+          </a>
+        </li>
         {% if user.is_authenticated %}
         <li class="nav-item"> 
           <a class="nav-link
