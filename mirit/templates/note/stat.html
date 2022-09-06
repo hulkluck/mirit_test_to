@@ -7,10 +7,23 @@
         <p>ДО: <input type="datetime-local" value={{end}} name="end" required></p>
         <p><input type="submit" name="submit" value="submit"/></p>
     </form>
+    <input type="checkbox" id="one" onchange="fun1()">
 </div>
 <div class="container py-5">
     Общее воличество постов: {{ count|length }}
 </div>
+<script>
+function fun1() {
+var chbox;
+chbox=document.getElementById('one');
+  if (chbox.checked) {
+    window.location.href = 'notes:note_stat';
+  }
+  else {
+    window.location.href = '/';
+  }
+}
+</script>
   <div class="container py-5">
   
   {% for post in object_list %}
