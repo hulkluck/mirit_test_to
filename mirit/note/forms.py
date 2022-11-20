@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from .models import Note
+from .models import Note, ManyToManyTest, ManyPole
 
 
 class NoteForm(forms.ModelForm):
@@ -27,3 +27,28 @@ class NoteForm(forms.ModelForm):
                     'В заметке обязательно должен быть текст'
                 )
             return text
+
+
+class ManyForm(forms.ModelForm):
+
+    class Meta:
+
+        model = ManyToManyTest
+        fields = ('pole',)
+        widgets = {
+            'pole': forms.RadioSelect(),
+            # 'pole_photo': forms.ClearableFileInput(attrs={'multiple': True, 'required': False})
+        }
+
+
+# class PhotoFileForm(forms.Form):
+#     photo = forms.FileField(widget=forms.ClearableFileInput(
+#         attrs={'multiple': True, 'required': False}))
+
+class PhotoFileForm(forms.ModelForm):
+    photo = forms.ImageField(
+        widget=forms.ClearableFileInput(attrs={'multiple': True, 'required': False})
+    )
+    class Meta:
+        model = ManyPole
+        fields = ('photo',)

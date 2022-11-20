@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Note, User
+from .models import Note, User, ManyToManyTest, ManyPole
 
 
 class NoteAdmin(admin.ModelAdmin):
@@ -12,3 +12,6 @@ class NoteAdmin(admin.ModelAdmin):
 
 admin.site.register(Note, NoteAdmin)
 admin.site.register(User)
+admin.site.register(ManyToManyTest)
+admin.site.register(ManyPole)
+

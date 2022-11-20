@@ -16,6 +16,15 @@
           сортировка
           </a>
         </li>
+        <li class="nav-item"> 
+          <a class="nav-link
+          {% if view_name  == '' %}
+            active
+          {% endif %}"
+          href="{% url 'notes:many' %}">
+          Проверка мэни
+          </a>
+        </li>
         {% if user.is_authenticated %}
         <li class="nav-item"> 
           <a class="nav-link
@@ -24,6 +33,15 @@
           {% endif %}"
           href="{% url 'notes:note_create' %}">
           Новая запись
+          </a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link
+          {% if view_name  == '' %}
+            active
+          {% endif %}"
+          href="{% url 'notes:create_many' %}">
+          Мэни ту мэни поле
           </a>
         </li>
         <li class="nav-item"> 

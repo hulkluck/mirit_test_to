@@ -81,3 +81,21 @@ class Note(models.Model):
     def __str__(self):
         return self.text[:15]
         
+
+
+class ManyPole(models.Model):
+    photo = models.ImageField(upload_to='many_test', null=True)
+    # many = models.ForeignKey('ManyToManyTest', on_delete=models.CASCADE, related_name='many_pole')
+
+
+class ManyToManyTest(models.Model):
+    YESNO = (
+        ('ДА', 'ДА'),
+        ('НЕТ', 'НЕТ')
+    )
+    user = models.ForeignKey(User, related_name='author', on_delete=models.CASCADE)
+    pole = models.CharField(verbose_name='Вопрос', choices=YESNO, max_length=3)
+    pole_photo = models.ManyToManyField(ManyPole, related_name='photo_1')
+
+    def get_absolute_url(self):
+        return reverse('notes:index')

@@ -11,4 +11,7 @@ urlpatterns = [
     path('create/', PostCreateView.as_view(), name='note_create'),
     path('note/<int:pk>/edit/', PostUpdateView.as_view(), name='note_edit'),
     path('note/stat', PostStatView.as_view(), name='note_stat'),
+    path('createmany/', CreateMany.as_view(), name='create_many'),
+    path('many/', ManyView.as_view(), name='many'),
+    
 ]

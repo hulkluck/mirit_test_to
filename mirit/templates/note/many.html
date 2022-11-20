@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" action="{% url 'notes:create_many' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form_quest.pole }}
+    {% csrf_token %}
+    {{ form_photo.photo }}
+    <button type="submit" class="btn btn-primary" name='send'>Сохранить</button>
+</form>
+{% endblock %}
